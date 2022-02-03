@@ -11,6 +11,7 @@
 + After a while, the facility explodes
 + The facility is cleaned after a while
 + Mutes are cleared after the start of the game
++ The blood on the floor will not spawn
 + When you look at SCP096, it shows the text
 + When you throw away items, you can clean them
 + Friendly fire turns on at the end of the game
@@ -29,6 +30,7 @@
 + Через некоторое время комплекс взрывается
 + Через некоторое время комплекс очищается
 + Муты очищаются после начала игры
++ Кровь на полу не спавнится
 + Когда вы смотрите на SCP096, он показывает текст
 + Когда вы выбрасываете предметы, они могут почиститься
 + Дружественный огонь включается в конце игры
