@@ -1,7 +1,7 @@
 # StarterUtils
 ## Adds a lot of new features.
 ## Добавляет много новых функций.
-```
+``
 # Plugin Name
 Name: StarterUtils
 # Enable the plugin?
@@ -86,4 +86,4 @@ ClassAmmo:
     Ammo556: 50
     Ammo762: 50
     Ammo9: 50
-```
+``
