@@ -2,7 +2,22 @@
 ## Adds a lot of new features:
 + SCP can talk
 + You can change the elevator time
-+ Добавляет много новых функций.
++ Infinite Radio
++ Infinite Ammo
++ SizeChanger
++ OffGravity
++ TeamMessages
++ IntercomText
++ NukeTime
++ Cleanup
++ MuteClear
++ Scp096Text
++ PickupCleanup
++ FFEnable
++ WarheadEndEnable
++ ClassAmmo
+
+## Добавляет много новых функций.
 
 # Config
 ## Eng Config
