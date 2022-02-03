@@ -17,7 +17,7 @@
 + The warhead is activated at the end of the game
 + You can customize RoleType, AmmoType and the amount of Ammo
 
-## Добавляет много новых функций.
+## Добавляет много новых функций:
 + SCP могут разговаривать
 + Вы можете изменить время лифта
 + Радио имеет бесконечный заряд
