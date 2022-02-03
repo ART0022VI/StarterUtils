@@ -82,4 +82,3 @@ ClassAmmo:
     Ammo556: 50
     Ammo762: 50
     Ammo9: 50
-```
