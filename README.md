@@ -6,6 +6,7 @@
 + People have infinite ammo
 + You can change people's size when spawning
 + You can turn off the gravity of objects
++ Change the size of objects in gravity
 + Squad messages in the corner
 + In the intercom, the number of players in the squads
 + After a while, the facility explodes
@@ -25,6 +26,7 @@
 + У людей бесконечные боеприпасы
 + Вы можете изменять размер людей во время спавна
 + Вы можете отключить гравитацию объектов
++ Изменить размер предметов в гравитации
 + Сообщения отряда в углу
 + В интеркоме количество игроков в отрядах
 + Через некоторое время комплекс взрывается
