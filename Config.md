@@ -1,4 +1,4 @@
-```
+``` yaml
 # Plugin Name
 Name: StarterUtils
 # Enable the plugin?
