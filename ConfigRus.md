@@ -1,63 +1,63 @@
 ``` yaml
-# Plugin Name
+# Название плагина
 Name: StarterUtils
-# Enable the plugin?
+# Включить плагин?
 IsEnable: true
-# Allow SCP to talk to people?
+# Позволять SCP разговаривать с людьми?
 SCPSpeakEnable: true
-# Allows you to set the time required for the arrival of the elevator? Default: 5 sec.
+# Позволяет установить время, необходимое для прибытия лифта? По умолчанию: 5 сек.
 ElevatorTime: 5
-# Allow you to talk on the radio with infinite energy?
+# Позволять вам говорить по радио с бесконечной энергией?
 InfiniteRadioEnable: true
-# Allow people to have infinite ammo? 0 - disable, 1 - infinite gun, 2 - infinite ammo.
+# Позволить людям иметь бесконечные боеприпасы? 0 - откл, 1 - беск оружие, 2 - беск боеприпасы.
 InfiniteAmmoEnable: 2
-# Allow people to change size when changing roles?
+# Позволять людям изменять размер при смене ролей?
 SizeChangerEnable: true
-# Turn off gravity for objects?
+# Отключить гравитацию для предметов?
 OffGravityEnable: true
-# The size of objects after turning off gravity? Default: 1
+# Размер предметов после откл гравитации? Значение по умолчанию: 1
 ItemScale: 2
-# A dictionary contain strings for changing the name of a player's team. +The text used in the intercom.
+# Словарь содержит строки для изменения названия команды игрока. +Текст, используемый в интеркоме.
 TeamMessage:
-  ChaosInsurgency: <color=green>Chaos</color>
-  ClassD: <color=orange>D Class</color>
-  NineTailedFox: <color=#42AAFF>MTF</color>
-  Scientist: <color=yellow>Scienst</color>
-  SCP: <color=red>SCP</color>
-  Tutorial: <color=green>Tutorial</color>
-# Whether to include a text in the intercom that shows the time and the players.
+  ChaosInsurgency: <color=green>Хаосит</color>
+  ClassD: <color=orange>Класс Д</color>
+  NineTailedFox: <color=#42AAFF>МТФ</color>
+  Scientist: <color=yellow>Ученый</color>
+  SCP: <color=red>ДЦП</color>
+  Tutorial: <color=green>Туториал</color>
+# Следует ли включать текст в интерком, показывающий время и игроков.
 IntercomTextEnable: true
-# You can change the server name string in the intercom.
-NameServer: <color=yellow>My Server Name</color>
-# You can change the 'time round' string in the intercom.
-IntercomTimeText: <color=yellow>Time round</color>
-# Launch an automatic warhead after a set time?
+# Вы можете изменить строку имени сервера в интеркоме.
+NameServer: <color=yellow>Название сервера</color>
+# Вы можете изменить строку "Время раунда" в интеркоме.
+IntercomTimeText: <color=yellow>Время раунда</color>
+# Запустить автоматическую боеголовку через установленное время?
 NukeTimeEnable: true
-# Set the time in minutes after which the warhead will launch.
+# Установите время в минутах, после которого боеголовка запустится.
 NukeTimeMinutes: 40
-# Warhead launch text.
-NukeTimeText: <color=yellow>Launching</color> <color=red>Auto-Warhead</color>
-# Allow items and ragdolls to be cleaned after a while?
+# Текст о запуске боеголовки.
+NukeTimeText: <color=yellow>Запуск</color> <color=red>Авто-Боеголовки</color>
+# Разрешить чистку предметов и трупов через некоторое время?
 CleanUpEnable: true
-# Every N minutes the server will be cleared.
+# Каждые N минут сервер будет очищаться.
 CleanUpTimeMinutes: 10
-# Does the server need to clean items?
+# Нужно ли серверу очищать предметы?
 CleanUpItems: false
-# Does the server need to clean ragdolls?
+# Нужно ли серверу чистить трупы?
 CleanUpRagdolls: true
-# Does the server need to clean blood?
+# Нужно ли серверу очищать кровь при попадании или смерти?
 CleanUpBlood: true
-# Cleanup broadcast text.
-CleanUpText: <color=yellow>The map has been cleared!</color>
-# Is it necessary to clean the mutes after the start and end of the round?
+# Текст бродкаста
+CleanUpText: <color=yellow>Карта была очищена!</color>
+# Необходимо ли убирать муты после начала и окончания раунда?
 MuteClearEnable: true
-# Show a message when you looked at SCP-096?
+# Показывать сообщение, когда вы смотрели на SCP-096?
 Scp096Target: true
-# Text when you looked at SCP-096.
-Scp096Text: <color=#8b00ff>You looked at a <color=red>SCP-096</color></color>
-# Allow items to be removed after they are thrown away from the player?
+# Сообщение, когда ты смотрел на SCP-096.
+Scp096Text: <color=#8b00ff>Ты посмотрел на <color=red>SCP-096</color></color>
+# Разрешить удаление предметов после того, как они будут выброшены игроком?
 PickupCleanEnable: true
-# A list of items that will be removed after throwing them.
+# Список предметов, которые будут удалены после их выброса.
 Items:
 - Ammo12gauge
 - Ammo44cal
@@ -65,17 +65,17 @@ Items:
 - Ammo762x39
 - Ammo9x19
 - Radio
-# Enable friendly fire at the end of the round?
+# Включить дружественный огонь в конце раунда?
 FriendlyFireEnable: true
-# Is it necessary to detonate a warhead at the end of the round?
+# Необходимо ли взрывать боеголовку в конце раунда?
 WarheadEndEnable: false
-# Allow you to customize ammo for each class?
+# Позволяет настраивать боеприпасы для каждого класса?
 ClassAmmoEnable: true
-# True: Give all ammo to all classes when spawning?
+# True: Раздавать все боеприпасы всем классам при появлении?
 ClassAmmoAllEnable: true
-# True: How many bullets to give when spawning?
+# True: Сколько патронов нужно дать при спавне?
 ClassAmmoAllCount: 100
-# False: You can customize RoleType, AmmoType and the amount of Ammo.
+# False: Вы можете настроить тип роли, тип боеприпасов и количество боеприпасов.
 ClassAmmo:
   ClassD:
     Ammo12Gauge: 50
