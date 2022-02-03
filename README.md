@@ -1,8 +1,8 @@
 # StarterUtils
 ## Adds a lot of new features:
-### - SCP can talk
-### - You can change the elevator time
-## Добавляет много новых функций.
++ SCP can talk
++ You can change the elevator time
++ Добавляет много новых функций.
 
 # Config
 ## Eng Config
