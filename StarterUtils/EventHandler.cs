@@ -24,7 +24,7 @@ namespace StarterUtils
         {
             Map.ElevatorsMovingSpeed = StarterUtils.CustomConfig.ElevatorTime;
 
-            if (StarterUtils.CustomConfig.FriendlyFireRoundStartEnable) Server.FriendlyFire = true;
+            Server.FriendlyFire = StarterUtils.CustomConfig.FriendlyFireRoundStart;
 
             var TeamMessage = StarterUtils.CustomConfig.TeamMessage;
 
