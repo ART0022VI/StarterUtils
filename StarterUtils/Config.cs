@@ -83,8 +83,16 @@ namespace StarterUtils
         };
         [Description("Enable friendly fire at the end of the round?")]
         public bool FriendlyFireEnable { get; set; } = true;
+        [Description("Enable friendly fire in round start?")]
+        public bool FriendlyFireRoundStartEnable { get; set; } = false;
         [Description("Is it necessary to detonate a warhead at the end of the round?")]
         public bool WarheadEndEnable { get; set; } = false;
+        [Description("Should we not allow the handcuffed players to be killed?")]
+        public bool HandcuffedGodEnable { get; set; } = true;
+        [Description("Should we not allow the handcuffed players to be killed?")]
+        public string HandcuffedAttackerText { get; set; } = "<color=red>You can't kill a handcuffed player</color>";
+        
+
         [Description("Allow you to customize ammo for each class?")]
         public bool ClassAmmoEnable { get; set; } = true;
         [Description("True: Give all ammo to all classes when spawning?")]

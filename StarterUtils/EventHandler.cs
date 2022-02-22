@@ -24,7 +24,7 @@ namespace StarterUtils
         {
             Map.ElevatorsMovingSpeed = StarterUtils.CustomConfig.ElevatorTime;
 
-            if (StarterUtils.CustomConfig.FriendlyFireEnable) Server.FriendlyFire = false;
+            if (StarterUtils.CustomConfig.FriendlyFireRoundStartEnable) Server.FriendlyFire = true;
 
             var TeamMessage = StarterUtils.CustomConfig.TeamMessage;
 
@@ -77,8 +77,6 @@ namespace StarterUtils
         }
         public static void RoundEnded(RoundEndEvent ev)
         {
-            if (StarterUtils.CustomConfig.FriendlyFireEnable) Server.FriendlyFire = true;
-
             if (StarterUtils.CustomConfig.MuteClearEnable)
                 foreach (Player player in Player.List)
                 {
@@ -206,6 +204,24 @@ namespace StarterUtils
                 ev.Player.Ammo556 = CustomConfig.ClassAmmoAllCount;
                 ev.Player.Ammo762 = CustomConfig.ClassAmmoAllCount;
                 ev.Player.Ammo9 = CustomConfig.ClassAmmoAllCount;
+            }
+        }
+        public static void OnDamaging(DamageEvent ev)
+        {
+            if (ev.Target.Cuffed && ev.Attacker.Team != Team.SCP)
+            {
+                var text = StarterUtils.CustomConfig.HandcuffedAttackerText;
+                ev.Allowed = false;
+                ev.Attacker.ShowHint(text, 2.5f);
+            }
+        }
+        public static void OnDamageProcessing(DamageProcessEvent ev)
+        {
+            if (Round.Ended)
+            {
+                ev.FriendlyFire = false;
+                ev.Amount = 10;
+                ev.Allowed = true;
             }
         }
         public static void BloodSpawn(NewBloodEvent ev)
