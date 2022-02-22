@@ -15,7 +15,9 @@
 + The blood on the floor will not spawn
 + When you look at SCP096, it shows the text
 + When you throw away items, you can clean them
-+ Friendly fire turns on at the end of the game
++ Friendly fire round end
++ Friendly fire round start
++ Handcuffed become immortal
 + The warhead is activated at the end of the game
 + You can customize RoleType, AmmoType and the amount of Ammo
 
@@ -36,6 +38,8 @@
 + Когда вы смотрите на SCP096, он показывает текст
 + Когда вы выбрасываете предметы, они могут почиститься
 + Дружественный огонь включается в конце игры
++ Дружественный огонь включается в начале игры
++ Связанные в наручки становятся бессмертными
 + Альфа-Боеголовка активируется в конце игры
 + Вы можете настроить тип роли, тип боеприпасов и количество боеприпасов
 
