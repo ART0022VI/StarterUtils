@@ -45,8 +45,9 @@ namespace StarterUtils
             if (StarterUtils.CustomConfig.MuteClearEnable)
                 foreach (Player player in Player.List)
                 {
-                    MuteHandler.RevokePersistentMute(player.UserId);
+                    player.Muted = false;
                 }
+            if (StarterUtils.CustomConfig.CleanVaseDope) DeleteScp244();
         }
         public static IEnumerator<float> TimingCleanup()
         {
@@ -80,7 +81,7 @@ namespace StarterUtils
             if (StarterUtils.CustomConfig.MuteClearEnable)
                 foreach (Player player in Player.List)
                 {
-                    MuteHandler.RevokePersistentMute(player.UserId);
+                    player.Muted = false;
                 }
 
             if (StarterUtils.CustomConfig.WarheadEndEnable)
@@ -132,10 +133,6 @@ namespace StarterUtils
                         if (player.Team == Team.TUT) TutCount++;
                         if (player.Team == Team.SCP) SCPCount++;
                     }
-                    //if (Intercom.State.Ready == ReferenceHub.HostHub.GetComponent<Intercom>()._state)
-                    //{
-                    //    States = "Ready";
-                    //}//$"\n<size=15><color=#ffffff>{States}</color>" +
                     ReferenceHub.HostHub.GetComponent<Intercom>().CustomContent = $"<size=20>{CustomConfig.NameServer}</size>" +
                         $"\n <size=15>{CustomConfig.TeamMessage[SpawnableTeamType.ClassD]}: {DClassCount}" +
                         $"\n {CustomConfig.TeamMessage[SpawnableTeamType.Scientist]}: {ScientistCount}" +
@@ -144,6 +141,10 @@ namespace StarterUtils
                         $"\n {CustomConfig.TeamMessage[SpawnableTeamType.Tutorial]}: {TutCount}" +
                         $"\n {CustomConfig.TeamMessage[SpawnableTeamType.SCP]}: {SCPCount}" +
                         $"\n <color=cyan>{CustomConfig.IntercomTimeText}: {Round.ElapsedTime.Minutes}:{Round.ElapsedTime.Seconds} </color></size>";
+                }
+                if (Round.ElapsedTime.Minutes > 30f)
+                {
+                    AfterMidGame();
                 }
                 yield return Timing.WaitForSeconds(1f);
             }
@@ -174,7 +175,7 @@ namespace StarterUtils
                 if (item == ItemType.GunCOM15 || item == ItemType.GunCOM18 || item == ItemType.GunCrossvec || item == ItemType.GunFSP9) ev.Shooter.Ammo9++;
                 else if (item == ItemType.GunE11SR) ev.Shooter.Ammo556++;
                 else if (item == ItemType.GunRevolver) ev.Shooter.Ammo44Cal++;
-                else if (item == ItemType.GunShotgun) ev.Shooter.Ammo12Gauge++;
+                else if (item == ItemType.GunShotgun) ev.Shooter.Ammo12Gauge = (ushort)(ev.Shooter.Ammo12Gauge + 2);
                 else if (item == ItemType.GunAK || item == ItemType.GunLogicer) ev.Shooter.Ammo762++;
             }
         }
@@ -214,19 +215,137 @@ namespace StarterUtils
                 ev.Allowed = false;
                 ev.Attacker.ShowHint(text, 2.5f);
             }
+            if (ev.Attacker.Role == RoleType.Scp049)
+            {
+                ev.Target.DropItems();
+                ev.Allowed = false;
+                BlockAndChangeRolePlayer(ev.Target, RoleType.Scp0492);
+            }
         }
         public static void OnDamageProcessing(DamageProcessEvent ev)
         {
             if (Round.Ended)
             {
                 ev.FriendlyFire = false;
-                ev.Amount = 10;
+                ev.Amount = 30;
                 ev.Allowed = true;
             }
+            if (Server.FriendlyFire == false && ev.Attacker == ev.Target)
+            {
+                if (ev.DamageType == DamageTypes.Explosion)
+                {
+                    ev.Amount = 0;
+                    ev.Allowed = false;
+                }
+            }
+        }
+        public static void AfterMidGame()
+        {
+            foreach (Pickup pickup in Map.Pickups)
+            {
+                pickup.Base.DestroySelf();
+            }
+            foreach (Ragdoll ragdoll in Object.FindObjectsOfType<Ragdoll>())
+            {
+                Object.Destroy(ragdoll.gameObject);
+            }
+        }
+        public static void DeleteScp244()
+        {
+            foreach (Pickup pickup in Map.Pickups)
+            {
+                if (pickup.Type == ItemType.SCP244a || pickup.Type == ItemType.SCP244b)
+                {
+                    Log.Info($"Координаты вазы: {pickup.Position.x} {pickup.Position.y} {pickup.Position.z}");
+                    RandomItem(pickup);
+                    pickup.Base.DestroySelf();
+                }
+                if (pickup.Type == ItemType.SCP1853)
+                {
+                    Log.Info($"Координаты бутылки: {pickup.Position.x} {pickup.Position.y} {pickup.Position.z}");
+                    RandomItem(pickup);
+                    pickup.Base.DestroySelf();
+                }
+            }
+        }
+        public static void RandomItem(Pickup pickup)
+        {
+            var value = Random.Range(0, 47);
+            switch (value)
+            {
+                // Keycards
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                case 10:
+                case 11:
+                    {
+                        var item = new Item((ItemType)value).Spawn(pickup.Position, Quaternion.Euler(pickup.Rotation.x + 90f, pickup.Rotation.y + 0f, pickup.Rotation.z + 90f));
+                        item.Scale = new Vector3(2f, 10f, 2f);
+                    }
+                    break;
+                // Weapons
+                case 16:
+                case 20:
+                case 23:
+                case 24:
+                case 39:
+                case 40:
+                case 41:
+                case 47: // cleared
+                    {
+                        new Item((ItemType)value).Spawn(pickup.Position, pickup.Rotation).Scale = new Vector3(0.5f, 0.5f, 0.2f);
+                    }
+                    break;
+                // Ammo
+                case 19:
+                case 22:
+                case 27:
+                case 28:
+                case 29:
+                    {
+                        new Item((ItemType)value).Spawn(pickup.Position, pickup.Rotation).Scale = new Vector3(1.5f, 1.5f, 1.5f);
+                    }
+                    break;
+                // Armor
+                case 36:
+                case 37:
+                case 38:
+                    {
+                        new Item((ItemType)value).Spawn(pickup.Position, pickup.Rotation).Scale = new Vector3(0.7f, 0.5f, 0.5f);
+                    }
+                    break;
+                // Shit-Update
+                case 12:
+                case 44:
+                case 45:
+                case 46:
+                    {
+                        // coin
+                        new Item((ItemType)35).Spawn(pickup.Position, pickup.Rotation).Scale = new Vector3(2f, 2f, 2f);
+                    }
+                    break;
+                default:
+                    {
+                        new Item((ItemType)value).Spawn(pickup.Position, pickup.Rotation);
+                    }
+                    break;
+            }
+        }
+        public static void PlacingBulletHoles(PlaceBulletHoleEvent ev)
+        {
+            if (Round.ElapsedTime.Minutes > 30f) ev.Allowed = false;
         }
         public static void BloodSpawn(NewBloodEvent ev)
         {
-            ev.Allowed = false;
+            if (Round.ElapsedTime.Minutes > 30f) ev.Allowed = false;
         }
         public static void PressedQ(PressPrimaryChatEvent ev)
         {
@@ -239,6 +358,11 @@ namespace StarterUtils
         public static void OnRadioUsing(RadioUsingEvent ev)
         {
             ev.Battery = 100;
+        }
+        public static void BlockAndChangeRolePlayer(Player player, RoleType role)
+        {
+            player.BlockSpawnTeleport = true;
+            player.Role = role;
         }
     }
 }

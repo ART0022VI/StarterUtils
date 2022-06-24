@@ -14,7 +14,6 @@ namespace StarterUtils
         [Description("Enable the plugin?")]
         public bool IsEnable { get; set; } = true;
 
-
         [Description("Allow SCP to talk to people?")]
         public bool SCPSpeakEnable { get; set; } = true;
         [Description("Allows you to set the time required for the arrival of the elevator? Default: 5 sec.")]
@@ -61,6 +60,8 @@ namespace StarterUtils
         public bool CleanUpRagdolls { get; set; } = true;
         [Description("Does the server need to clean blood?")]
         public bool CleanUpBlood { get; set; } = true;
+        [Description("Do need to spawn bullet holes?")]
+        public bool SpawnBulletHole { get; set; } = true;
         [Description("Cleanup broadcast text.")]
         public string CleanUpText { get; set; } = "<color=yellow>The map has been cleared!</color>";
         [Description("Is it necessary to clean the mutes after the start and end of the round?")]
@@ -91,14 +92,14 @@ namespace StarterUtils
         public bool HandcuffedGodEnable { get; set; } = true;
         [Description("Should we not allow the handcuffed players to be killed?")]
         public string HandcuffedAttackerText { get; set; } = "<color=red>You can't kill a handcuffed player</color>";
-        
-
         [Description("Allow you to customize ammo for each class?")]
         public bool ClassAmmoEnable { get; set; } = true;
         [Description("True: Give all ammo to all classes when spawning?")]
         public bool ClassAmmoAllEnable { get; set; } = true;
         [Description("True: How many bullets to give when spawning?")]
         public ushort ClassAmmoAllCount { get; set; } = 100;
+        [Description("Do need to clean SCP-244 and SCP-1853?")]
+        public bool CleanVaseDope { get; set; } = true;
         [Description("False: You can customize RoleType, AmmoType and the amount of Ammo.")]
         public Dictionary<RoleType, Dictionary<AmmoType, ushort>> ClassAmmo { get; set; } = new Dictionary<RoleType, Dictionary<AmmoType, ushort>>()
         {

@@ -16,7 +16,7 @@ namespace StarterUtils
     {
         public override string Developer => "KoT0XleB#4663";
         public override string Name => "StarterUtils";
-        public override Version Version => new Version(1, 2, 0);
+        public override Version Version => new Version(2, 0, 0);
         public override int Priority => int.MaxValue;
         public override void Enable() => RegisterEvents();
         public override void Disable() => UnregisterEvents();
@@ -31,11 +31,13 @@ namespace StarterUtils
             Round.Waiting += EventHandler.RoundWaiting;
             Round.End += EventHandler.RoundEnded;
 
+            if (CustomConfig.SpawnBulletHole) Map.PlaceBulletHole += EventHandler.PlacingBulletHoles;
+
+            if (CustomConfig.CleanUpBlood) Map.NewBlood += EventHandler.BloodSpawn;
+
             if (CustomConfig.FriendlyFireEnable) Player.DamageProcess += EventHandler.OnDamageProcessing;
 
             if (CustomConfig.HandcuffedGodEnable) Player.Damage += EventHandler.OnDamaging;
-
-            if (CustomConfig.CleanUpBlood) Map.NewBlood += EventHandler.BloodSpawn;
 
             if (CustomConfig.ClassAmmoEnable) Player.Spawn += EventHandler.OnSpawning;
 
@@ -68,11 +70,13 @@ namespace StarterUtils
             Round.Waiting -= EventHandler.RoundWaiting;
             Round.End -= EventHandler.RoundEnded;
 
+            if (CustomConfig.SpawnBulletHole) Map.PlaceBulletHole -= EventHandler.PlacingBulletHoles;
+
+            if (CustomConfig.CleanUpBlood) Map.NewBlood -= EventHandler.BloodSpawn;
+
             if (CustomConfig.FriendlyFireEnable) Player.DamageProcess -= EventHandler.OnDamageProcessing;
 
             if (CustomConfig.HandcuffedGodEnable) Player.Damage -= EventHandler.OnDamaging;
-
-            if (CustomConfig.CleanUpBlood) Map.NewBlood -= EventHandler.BloodSpawn;
 
             if (CustomConfig.ClassAmmoEnable) Player.Spawn -= EventHandler.OnSpawning;
 
