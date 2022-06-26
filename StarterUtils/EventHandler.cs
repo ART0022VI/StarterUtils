@@ -209,17 +209,23 @@ namespace StarterUtils
         }
         public static void OnDamaging(DamageEvent ev)
         {
-            if (ev.Target.Cuffed && ev.Attacker.Team != Team.SCP)
+            if (StarterUtils.CustomConfig.HandcuffedGodEnable)
             {
-                var text = StarterUtils.CustomConfig.HandcuffedAttackerText;
-                ev.Allowed = false;
-                ev.Attacker.ShowHint(text, 2.5f);
+                if (ev.Target.Cuffed && ev.Attacker.Team != Team.SCP)
+                {
+                    var text = StarterUtils.CustomConfig.HandcuffedAttackerText;
+                    ev.Allowed = false;
+                    ev.Attacker.ShowHint(text, 2.5f);
+                }
             }
-            if (ev.Attacker.Role == RoleType.Scp049)
+            if (StarterUtils.CustomConfig.FasterZombieEnable)
             {
-                ev.Target.DropItems();
-                ev.Allowed = false;
-                BlockAndChangeRolePlayer(ev.Target, RoleType.Scp0492);
+                if (ev.Attacker.Role == RoleType.Scp049)
+                {
+                    ev.Target.DropItems();
+                    ev.Allowed = false;
+                    BlockAndChangeRolePlayer(ev.Target, RoleType.Scp0492);
+                }
             }
         }
         public static void OnDamageProcessing(DamageProcessEvent ev)

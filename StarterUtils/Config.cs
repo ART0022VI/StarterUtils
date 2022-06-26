@@ -100,6 +100,8 @@ namespace StarterUtils
         public ushort ClassAmmoAllCount { get; set; } = 100;
         [Description("Do need to clean SCP-244 and SCP-1853?")]
         public bool CleanVaseDope { get; set; } = true;
+        [Description("Is it necessary to give SCP-049 the opportunity to quickly create a SCP-0492?")]
+        public bool FasterZombieEnable { get; set; } = true;
         [Description("False: You can customize RoleType, AmmoType and the amount of Ammo.")]
         public Dictionary<RoleType, Dictionary<AmmoType, ushort>> ClassAmmo { get; set; } = new Dictionary<RoleType, Dictionary<AmmoType, ushort>>()
         {

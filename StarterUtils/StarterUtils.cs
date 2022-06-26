@@ -30,14 +30,13 @@ namespace StarterUtils
             Round.Start += EventHandler.RoundStarted;
             Round.Waiting += EventHandler.RoundWaiting;
             Round.End += EventHandler.RoundEnded;
+            Player.Damage += EventHandler.OnDamaging;
 
             if (CustomConfig.SpawnBulletHole) Map.PlaceBulletHole += EventHandler.PlacingBulletHoles;
 
             if (CustomConfig.CleanUpBlood) Map.NewBlood += EventHandler.BloodSpawn;
 
             if (CustomConfig.FriendlyFireEnable) Player.DamageProcess += EventHandler.OnDamageProcessing;
-
-            if (CustomConfig.HandcuffedGodEnable) Player.Damage += EventHandler.OnDamaging;
 
             if (CustomConfig.ClassAmmoEnable) Player.Spawn += EventHandler.OnSpawning;
 
@@ -69,14 +68,13 @@ namespace StarterUtils
             Round.Start -= EventHandler.RoundStarted;
             Round.Waiting -= EventHandler.RoundWaiting;
             Round.End -= EventHandler.RoundEnded;
+            Player.Damage -= EventHandler.OnDamaging;
 
             if (CustomConfig.SpawnBulletHole) Map.PlaceBulletHole -= EventHandler.PlacingBulletHoles;
 
             if (CustomConfig.CleanUpBlood) Map.NewBlood -= EventHandler.BloodSpawn;
 
             if (CustomConfig.FriendlyFireEnable) Player.DamageProcess -= EventHandler.OnDamageProcessing;
-
-            if (CustomConfig.HandcuffedGodEnable) Player.Damage -= EventHandler.OnDamaging;
 
             if (CustomConfig.ClassAmmoEnable) Player.Spawn -= EventHandler.OnSpawning;
 
