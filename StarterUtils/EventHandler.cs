@@ -56,12 +56,12 @@ namespace StarterUtils
             {
                 yield return Timing.WaitForSeconds(60f * CustomConfig.CleanUpTimeMinutes);
 
-                Map.Broadcast(CustomConfig.CleanUpText, 5);
+                Log.Info("Cleanup all");
+
                 if (CustomConfig.CleanUpItems)
                 {
                     foreach (Pickup pickup in Map.Pickups)
                     {
-                        Log.Info("Cleanup items");
                         pickup.Base.DestroySelf();
                     }
                 }
@@ -69,7 +69,6 @@ namespace StarterUtils
                 {
                     foreach (Ragdoll ragdoll in Object.FindObjectsOfType<Ragdoll>())
                     {
-                        Log.Info("Cleanup ragdolls");
                         Object.Destroy(ragdoll.gameObject);
                     }
                 }
@@ -267,13 +266,11 @@ namespace StarterUtils
             {
                 if (pickup.Type == ItemType.SCP244a || pickup.Type == ItemType.SCP244b)
                 {
-                    Log.Info($"Координаты вазы: {pickup.Position.x} {pickup.Position.y} {pickup.Position.z}");
                     RandomItem(pickup);
                     pickup.Base.DestroySelf();
                 }
                 if (pickup.Type == ItemType.SCP1853)
                 {
-                    Log.Info($"Координаты бутылки: {pickup.Position.x} {pickup.Position.y} {pickup.Position.z}");
                     RandomItem(pickup);
                     pickup.Base.DestroySelf();
                 }
