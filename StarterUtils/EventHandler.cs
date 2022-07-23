@@ -220,11 +220,16 @@ namespace StarterUtils
             }
             if (StarterUtils.CustomConfig.FasterZombieEnable)
             {
-                if (ev.Attacker.Role == RoleType.Scp049)
+                if (ev.Attacker.Role == RoleType.Scp049 && ev.Attacker != ev.Target)
                 {
                     ev.Target.DropItems();
                     ev.Allowed = false;
                     BlockAndChangeRolePlayer(ev.Target, RoleType.Scp0492);
+                    if (StarterUtils.CustomConfig.SCPHealthEnable)
+                    {
+                        StarterUtils.CustomConfig.ScpClassHealth.TryGetValue(ev.Attacker.Role, out int hp);
+                        GetHealthForKill(ev.Attacker, hp);
+                    }
                 }
             }
         }
@@ -273,6 +278,19 @@ namespace StarterUtils
                     pickup.Base.DestroySelf();
                 }
             }
+        }
+        public static void PlayerDead(DeadEvent ev)
+        {
+            if (ev.Killer.Team == Team.SCP && ev.Killer != ev.Target)
+            {
+                StarterUtils.CustomConfig.ScpClassHealth.TryGetValue(ev.Killer.Role, out int hp);
+                GetHealthForKill(ev.Killer, hp);
+            }
+        }
+        public static void GetHealthForKill(Player player, int hp)
+        {
+            player.Hp += hp;
+            player.ShowHint(StarterUtils.CustomConfig.SCPHealthText, 2);
         }
         public static void RandomItem(Pickup pickup)
         {

@@ -102,6 +102,21 @@ namespace StarterUtils
         public bool CleanVaseDope { get; set; } = true;
         [Description("Is it necessary to give SCP-049 the opportunity to quickly create a SCP-0492?")]
         public bool FasterZombieEnable { get; set; } = true;
+        [Description("Is it necessary to give soup when killing a passive heal?")]
+        public bool SCPHealthEnable { get; set; } = true;
+        [Description("Killing-health text")]
+        public string SCPHealthText { get; set; } = "<color=red>Вы получили <color=#00ffff>{hp} Хила</color> за убийство.</color>";
+        [Description("You can configure which class how much heal will receive.")]
+        public Dictionary<RoleType, int> ScpClassHealth { get; set; } = new Dictionary<RoleType, int>()
+        {
+            [RoleType.Scp049] = 25,
+            [RoleType.Scp0492] = 100,
+            [RoleType.Scp096] = 25,
+            [RoleType.Scp106] = 25,
+            [RoleType.Scp173] = 25,
+            [RoleType.Scp93953] = 20,
+            [RoleType.Scp93989] = 20
+        };
         [Description("False: You can customize RoleType, AmmoType and the amount of Ammo.")]
         public Dictionary<RoleType, Dictionary<AmmoType, ushort>> ClassAmmo { get; set; } = new Dictionary<RoleType, Dictionary<AmmoType, ushort>>()
         {

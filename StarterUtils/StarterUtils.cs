@@ -32,6 +32,8 @@ namespace StarterUtils
             Round.End += EventHandler.RoundEnded;
             Player.Damage += EventHandler.OnDamaging;
 
+            if (CustomConfig.SCPHealthEnable) Player.Dead += EventHandler.PlayerDead;
+
             if (CustomConfig.SpawnBulletHole) Map.PlaceBulletHole += EventHandler.PlacingBulletHoles;
 
             if (CustomConfig.CleanUpBlood) Map.NewBlood += EventHandler.BloodSpawn;
@@ -69,6 +71,8 @@ namespace StarterUtils
             Round.Waiting -= EventHandler.RoundWaiting;
             Round.End -= EventHandler.RoundEnded;
             Player.Damage -= EventHandler.OnDamaging;
+
+            if (CustomConfig.SCPHealthEnable) Player.Dead -= EventHandler.PlayerDead;
 
             if (CustomConfig.SpawnBulletHole) Map.PlaceBulletHole -= EventHandler.PlacingBulletHoles;
 
