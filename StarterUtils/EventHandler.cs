@@ -212,9 +212,16 @@ namespace StarterUtils
             {
                 if (ev.Target.Cuffed && ev.Attacker.Team != Team.SCP)
                 {
-                    var text = StarterUtils.CustomConfig.HandcuffedAttackerText;
-                    ev.Allowed = false;
-                    ev.Attacker.ShowHint(text, 2.5f);
+                    if (ev.Target.Cuffed && ev.DamageType == DamageTypes.Falldown)
+                    {
+                        ev.Target.Kill(null);
+                    }
+                    else
+                    {
+                        var text = StarterUtils.CustomConfig.HandcuffedAttackerText;
+                        ev.Allowed = false;
+                        ev.Attacker.ShowHint(text, 2.5f);
+                    }
                 }
             }
             if (StarterUtils.CustomConfig.FasterZombieEnable)
